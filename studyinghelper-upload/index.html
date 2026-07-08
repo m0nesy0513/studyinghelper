@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyingHelper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Liquid Glass · shuding 方案 — 全局共享滤镜 -->
+    <svg style="position:absolute;width:0;height:0;" aria-hidden="true">
+      <defs>
+        <filter id="liquid-glass" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+          <!-- 有机湍流 — 低频大波浪 → 玻璃折射感，非随机碎片 -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="2" result="noise"/>
+          <!-- 高斯平滑 — 消锯齿 -->
+          <feGaussianBlur in="noise" stdDeviation="6" result="smooth"/>
+          <!-- 像素位移 — R=水平 G=垂直，scale 控制折射强度 -->
+          <feDisplacementMap in="SourceGraphic" in2="smooth" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+    </svg>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
